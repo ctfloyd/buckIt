@@ -1,4 +1,4 @@
-$primary: red;
+$primary: lightgreen;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
@@ -25,12 +25,29 @@ $primary: red;
 }
 
 .c-row {
-    height: 75vh;
+    height: 70%;
 }
 
 .c-fluid {
-    height: 60vh;
+    // height: 40%;
+    max-height: 350px;
 }
+
+.c-row2 {
+    height: 15%;
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    .container-fluid {                           
+        height: 1024px;                         
+    }                       
+}   
+
+@media all and (device-width: 360px) and (device-height: 640px) and (orientation:portrait) {
+    .container-fluid {                           
+        height: 640px;                         
+    }                       
+} 
 
 @include media-breakpoint-up(sm) { 
     .nav-link {
