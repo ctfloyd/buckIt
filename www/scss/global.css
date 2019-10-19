@@ -10581,6 +10581,14 @@ a.text-dark:hover, a.text-dark:focus {
   color: red;
 }
 
+.c-row {
+  height: 75vh;
+}
+
+.c-fluid {
+  height: 60vh;
+}
+
 @media (min-width: 576px) {
   .nav-link {
     display: inline-block;

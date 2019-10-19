@@ -24,7 +24,13 @@ $primary: lightgreen;
     color: red;
 }
 
+.c-row {
+    height: 75vh;
+}
 
+.c-fluid {
+    height: 60vh;
+}
 @include media-breakpoint-up(sm) { 
     .nav-link {
         display: inline-block;
