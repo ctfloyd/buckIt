@@ -37,6 +37,13 @@ $primary: lightgreen;
     height: 15%;
 }
 
+.c-mt50{
+    margin-top: 50%;
+}
+
+.c-bg-img {
+    background-image: url("../assets/landing-background.jpg");
+}
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
     .container-fluid {                           
         height: 1024px;                         

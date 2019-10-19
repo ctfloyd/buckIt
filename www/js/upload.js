@@ -21,7 +21,9 @@ function readFile(file) {
 	var reader = new FileReader();
 
 	reader.onloadend = function () {
-		processFile(reader.result, file.type);
+        document.getElementById("choose").innerText = file.name;  
+        console.log(file);
+        processFile(reader.result, file.type);     
 	}
 
 	reader.onerror = function () {
@@ -29,13 +31,11 @@ function readFile(file) {
 	}
 
     reader.readAsDataURL(file);
-    
-    console.log(file);
 }
 
 function processFile(dataURL, fileType) {
-	var maxWidth = 800;
-	var maxHeight = 800;
+	var maxWidth = 230;
+	var maxHeight = 350;
 
 	var image = new Image();
 	image.src = dataURL;
@@ -71,8 +71,6 @@ function processFile(dataURL, fileType) {
 		context.drawImage(this, 0, 0, newWidth, newHeight);
 
 		dataURL = canvas.toDataURL(fileType);
-
-		console.log(dataURL);
 	};
 
 	image.onerror = function () {
