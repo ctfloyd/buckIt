@@ -34,12 +34,6 @@ function handleTouchMove(evt) {
             /* right swipe */
             alert("right swipe");
         }                       
-    } else {
-        if ( yDiff > 0 ) {
-            alert("up swipe");
-        } else { 
-            alert("down swipe");
-        }                                                                 
     }
     /* reset values */
     xDown = null;
