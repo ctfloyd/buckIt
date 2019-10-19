@@ -1,8 +1,4 @@
 # buckIt
 A coin thingy for sustainability
 
-
-ns-cloud-e1.googledomains.com
-ns-cloud-e2.googledomains.com
-ns-cloud-e3.googledomains.com
-ns-cloud-e4.googledomains.com
+http://35.230.182.43/
