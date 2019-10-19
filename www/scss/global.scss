@@ -1,0 +1,35 @@
+$primary: lightgreen;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+
+.tagline {
+    width: 95vw;
+}
+
+.c-nav-item {
+    color: lightgreen;
+}
+
+.c-active {
+    color: darkgreen !important;
+}
+
+.c-thumbs-up { 
+    color: darkgreen !important;
+}
+
+.c-thumbs-down {
+    color: red;
+}
+
+
+@include media-breakpoint-up(sm) { 
+    .nav-link {
+        display: inline-block;
+    }
+ }
+@include media-breakpoint-up(md) {  }
+@include media-breakpoint-up(lg) {  }
+@include media-breakpoint-up(xl) {  }
