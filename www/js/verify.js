@@ -57,8 +57,9 @@ $(document).ready(function () {
                 {
                     let image = jsonData.success.image;
                     image = image.replace(/\s/g, "+");
-                    console.log(image);
                     $("#rateMe").attr("src", image);
+                    $("#nameField").html(jsonData.success.username);
+                    $("#dateField").html(jsonData.success.createtime);
                 }
                 else
                 {
