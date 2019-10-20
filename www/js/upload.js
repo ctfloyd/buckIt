@@ -88,7 +88,7 @@ function storePicture() {
             return;
         }
         let date = new Date().toMysqlFormat();
-        let data = `op=publishEvent&location=Madison,WI&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&crateTime=${date}`;
+        let data = `op=publishEvent&location=Madison&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&createTime=${date}`;
         jQuery.ajax({
             type: "POST",
             url: '../calebOps.php',
