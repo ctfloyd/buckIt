@@ -29,11 +29,9 @@ $(document).ready(function () {
 
         if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
             if ( xDiff > 0 ) {
-                /* left swipe */ 
-                alert("left swipe");
+                setVerification(false); 
             } else {
-                /* right swipe */
-                alert("right swipe");
+                setVerification(true);
             }                       
         }
         /* reset values */
@@ -41,6 +39,7 @@ $(document).ready(function () {
         yDown = null;  
     }
 
+    let currentEventID = null;
     function getNextImage() {
         let data = `op=getEvent&username=${sessionStorage.getItem("username")}`;
         jQuery.ajax({
@@ -60,6 +59,7 @@ $(document).ready(function () {
                     $("#rateMe").attr("src", image);
                     $("#nameField").html(jsonData.success.username);
                     $("#dateField").html(jsonData.success.createtime);
+                    currentEventID = jsonData.success.eventid;
                 }
                 else
                 {
@@ -71,7 +71,27 @@ $(document).ready(function () {
     }
 
     function setVerification(ver){
-        return;
+        let val = ver == false ? 0 : 1;
+        let data = `op=verifyEvent&eventID=${currentEventID}$ver=${val}`;
+        jQuery.ajax({
+            type: "POST",
+            url: '../calebOps.php',
+            data: data,
+            success: function(response)
+            {
+                var jsonData = JSON.parse(response);           
+                // user is logged in successfully in the back-end
+                // let's redirect
+                if (jsonData.success == 1)
+                {
+                    getNextImage();
+                }
+                else
+                {
+                    alert('Error communicating with server.');
+                }
+        }
+        });
     }
 
 

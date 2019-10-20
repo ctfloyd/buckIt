@@ -153,7 +153,7 @@ function testOp($op) {
     // Assigns a verified tag to the given event
     //   function verifyEvent($eventID, $verified){
     case "verifyEvent":
-        if (!isset($_POST["eventID"]) || !isset($_POST["verified"])) return "Invalid Parameters";
+        if (!isset($_POST["eventID"]) || !isset($_POST["verified"])) return "-3";
 
         $eventID = $_POST["eventID"];
         $verified = $_POST["verified"];
