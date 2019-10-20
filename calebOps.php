@@ -63,12 +63,13 @@ function testOp($op) {
 
             $sql = "INSERT INTO buckit_user (firstName, lastName, points, username, password, email)
                 VALUES ('$first', '$last', 0, '$user', '$pass', '$email')";
-            if ($conn->query($sql) === TRUE) {
+            $valid = $conn->query($sql);
+            if ($valid === TRUE) {
                 $conn->close();
                 return "1";
             } else {
                 $conn->close();
-                return "0";
+                return $valid;
             }
             break;
 
