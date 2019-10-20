@@ -14,26 +14,25 @@ function testOp($op) {
     switch($op) { 
         case "testLogin":
             if (!isset($_POST["username"]) || !isset($_POST["password"])) return "Invalid Parameters";
-            return "hello";
             
-            // $user = $_POST["username"];
-            // $pass = $_POST["password"];
+            $user = $_POST["username"];
+            $pass = $_POST["password"];
                 
-            // $conn = connect();
-            // $sql =  "SELECT * FROM buckit_user WHERE username='$user' AND password='$pass'";
+            $conn = connect();
+            $sql =  "SELECT * FROM buckit_user WHERE username='$user' AND password='$pass'";
 
-            // $result = $conn->query($sql);
-            // if ($result->num_rows > 0) {
-            //     while ($list = mysqli_fetch_array($result)) {
-            //         $userid = $list[0];
-            //     }
-            //     $conn->close();
-            //     return true;
-            // }
-            // else {
-            //     $conn->close();
-            //     return false;
-            // }
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($list = mysqli_fetch_array($result)) {
+                    $userid = $list[0];
+                }
+                $conn->close();
+                return true;
+            }
+            else {
+                $conn->close();
+                return false;
+            }
             break;
 
     // Inputs the users information in the users db if it's not already taken
