@@ -3,7 +3,7 @@ let gDataURL = null;
 if (window.File && window.FileReader && window.FormData) {
 	var $inputField = $('#submitBtn');
 
-	$inputField.on('change', function (e) {
+	$inputField.on('click', function (e) {
 		var file = e.target.files[0];
 
 		if (file) {
