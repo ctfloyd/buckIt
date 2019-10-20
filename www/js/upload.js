@@ -101,7 +101,8 @@ function storePicture() {
                 // let's redirect
                 if (jsonData.success == "1")
                 {
-                    alert("Sucess!");
+                    alert("Thanks for uploading a photo. Please upload more!");
+                    location.href = "";
                 }
                 else
                 {
