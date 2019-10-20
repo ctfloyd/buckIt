@@ -1,12 +1,12 @@
 <?php
 $op = null;
 if(isset($_POST['op'])) {
-    $op = null;
+    $op = $_POST['op'];
+    echo json_encode(array('success' => testOp($op)));
 } else {
-    return "Invalid Parameters";
+    echo json_encode(array('success' => "invalid op"));
 }
 
-echo json_encode(array('success' => testOp($op)));
 
   // Tests if a login combination is valid to login  
 // function testLogin($user, $pass){
