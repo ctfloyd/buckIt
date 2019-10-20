@@ -11,7 +11,8 @@ if(isset($_POST['op'])) {
 switch($op) { 
     case "testLogin":
         if (!isset($_POST["username"]) || !isset($_POST["password"])) return "Invalid Parameters";
-
+        return "hello"
+        
         $user = $_POST["username"];
         $pass = $_POST["password"];
             
@@ -159,8 +160,10 @@ case "verifyEvent":
 	  } else {
 		  $conn->close();
 		  return false;
-	  }
-  }
+      }
+      break;
+default:
+   return "unrecognized op";
 
   // Update points for a user
   function updatePoints($user, $points) {
