@@ -41,10 +41,12 @@ $(document).ready(function() {
     
     $('#loginform').submit(function(e) {
         e.preventDefault();
+        let data = "op=testLogin&" + $(this).serialize();
+        console.log(data);
         jQuery.ajax({
             type: "POST",
             url: '../calebOps.php',
-            data: "op=testLogin&" + $(this).serialize(),
+            data: data;
             success: function(response)
             {
                 console.log(response);
