@@ -52,10 +52,11 @@
 $(document).ready(function() {
     $('#loginform').submit(function(e) {
         e.preventDefault();
+        let data = "op=registerLogin&" + $(this).serialize();
         jQuery.ajax({
             type: "POST",
             url: 'auth.php',
-            data: "op=$(this).serialize(),
+            data: data,
             success: function(response)
             {
 		        var jsonData = JSON.parse(response);
@@ -66,9 +67,12 @@ $(document).ready(function() {
                     sessionStorage.setItem("username", sessionStorage.setItem("username", $("#username").val()));
                     location.href = 'verify.html';
                 }
+                else if(jsonData.sucess == "2"){
+                    alert("Username already exists.");
+                }
                 else
                 {
-                    alert('Invalid Credentials!');
+                    alert('There was an error!');
                 }
            }
        });

@@ -58,17 +58,17 @@ function testOp($op) {
             $sql = "SELECT * FROM buckit_user WHERE username='$user'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                return "The username '$user' already exists";
+                return "2";
             }
 
             $sql = "INSERT INTO buckit_user (firstName, lastName, points, username, password, email)
                 VALUES ('$first', '$last', 0, '$user', '$pass', '$email')";
             if ($conn->query($sql) === TRUE) {
                 $conn->close();
-                return "New record created successfully";
+                return "1";
             } else {
                 $conn->close();
-                return "Error: $sql<br>$conn->error";
+                return "0";
             }
             break;
 
