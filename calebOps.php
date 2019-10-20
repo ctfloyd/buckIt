@@ -48,8 +48,8 @@ function testOp($op) {
 
             $user = $_POST["username"];
             $pass = $_POST["password"];
-            $first = $_POST["firstname"];
-            $last = $_POST["lastname"];
+            $first = $_POST["firstName"];
+            $last = $_POST["lastName"];
             $email = $_POST["email"];
 
             $conn = connect();
