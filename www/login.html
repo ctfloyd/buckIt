@@ -38,6 +38,7 @@
     
 <script type="text/javascript">
 $(document).ready(function() {
+    
     $('#loginform').submit(function(e) {
         e.preventDefault();
         jQuery.ajax({
@@ -46,13 +47,15 @@ $(document).ready(function() {
             data: $(this).serialize(),
             success: function(response)
             {
+                
                 console.log(response);
-		var jsonData = JSON.parse(response);
- 		console.log(jsonData);
+                var jsonData = JSON.parse(response);
+                console.log(jsonData);
                 // user is logged in successfully in the back-end
                 // let's redirect
                 if (jsonData.success == "1")
                 {
+                    sessionStorage.setItem("username", $("#username").val());
                     location.href = 'verify.html';
                 }
                 else
