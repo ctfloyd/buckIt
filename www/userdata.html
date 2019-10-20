@@ -99,9 +99,7 @@
                         var jsonData = JSON.parse(response);                
                         // user is logged in successfully in the back-end
                         // let's redirect
-                        console.log(jsonData.success);
-                        jsonData = jsonData.success;
-                        if (jsonData.success.point)
+                        if (jsonData.success.points)
                         {
                             let name = jsonData.success.firstName + " " + jsonData.success.lastName;
                             let points = jsonData.success.points;
