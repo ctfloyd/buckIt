@@ -36,6 +36,7 @@ function testOp($op) {
                 $conn->close();
                 echo "false";
             }
+            return;
             break;
 
     // Inputs the users information in the users db if it's not already taken
