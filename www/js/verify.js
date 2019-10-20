@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    if(!sessionStoragee.getItem("username")) location.href = "login.html";
-    
+    if(!sessionStorage.getItem("username")) location.href = "login.html";
+
     document.addEventListener('touchstart', handleTouchStart, false);        
     document.addEventListener('touchmove', handleTouchMove, false);
 

@@ -1,4 +1,4 @@
-if(!sessionStoragee.getItem("username")) location.href = "login.html";
+if(!sessionStorage.getItem("username")) location.href = "login.html";
 
 let gDataURL = null;
 
