@@ -23,9 +23,7 @@ function readFile(file) {
 
 	reader.onloadend = function () {
         document.getElementById("choose").innerText = file.name;  
-        gDataURL = reader.result;
-        storePicture();
-        // processFile(reader.result, file.type);     
+        processFile(reader.result, file.type);     
 	}
 
 	reader.onerror = function () {
@@ -36,8 +34,8 @@ function readFile(file) {
 }
 
 function processFile(dataURL, fileType) {
-	var maxWidth = 230;
-	var maxHeight = 350;
+	var maxWidth = 1280;
+	var maxHeight = 720;
 
 	var image = new Image();
 	image.src = dataURL;
