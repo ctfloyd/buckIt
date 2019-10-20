@@ -88,7 +88,7 @@ case "getUInfo":
 // function publishEvent($location, $user, $image, $type, $createtime){
 case "publishEvent":
     if (!isset($_POST["location"]) || !isset($_POST["username"]) || !isset($_POST["image"])
-    || !isset($_POST["type"] || !isset($_POST["createTime"]))) return "Invalid Parameters";
+    || !isset($_POST["type"]) || !isset($_POST["createTime"])) return "Invalid Parameters";
 
     $user = $_POST["username"];
     $location = $_POST["location"];
