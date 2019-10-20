@@ -86,7 +86,7 @@ function storePicture(image) {
         let data = `op=publishEvent&location=Madison,WI&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&crateTime=${date}`;
         jQuery.ajax({
             type: "POST",
-            url: '../../calebOps.php',
+            url: '../calebOps.php',
             data: data,
             success: function(response)
             {
