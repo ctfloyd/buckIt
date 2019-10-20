@@ -168,6 +168,7 @@ function testOp($op) {
     default:
         return "unrecognized op";
     }
+}
 
   // Update points for a user
   function updatePoints($user, $points) {
