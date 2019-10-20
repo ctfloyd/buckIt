@@ -55,7 +55,7 @@ $(document).ready(function() {
         let data = "op=registerLogin&" + $(this).serialize();
         jQuery.ajax({
             type: "POST",
-            url: 'auth.php',
+            url: '../calebOps.php',
             data: data,
             success: function(response)
             {
