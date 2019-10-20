@@ -22,7 +22,6 @@ function readFile(file) {
 
 	reader.onloadend = function () {
         document.getElementById("choose").innerText = file.name;  
-        console.log(file);
         processFile(reader.result, file.type);     
 	}
 
@@ -82,7 +81,6 @@ function processFile(dataURL, fileType) {
 
 function storePicture(image) {
         let date = new Date().toMysqlFormat();
-        console.log(date);
         let data = `op=publishEvent&location=Madison,WI&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&crateTime=${date}`;
         jQuery.ajax({
             type: "POST",
@@ -95,12 +93,12 @@ function storePicture(image) {
                 // let's redirect
                 if (jsonData.success == "1")
                 {
-                    sessionStorage.setItem("username", $("#username").val());
-                    location.href = 'verify.html';
+                    alert("Sucess!");
                 }
                 else
                 {
-                    alert('Invalid Credentials!');
+                    console.log(jsonData);
+                    alert('Error uploading photo!');
                 }
            }
        });
