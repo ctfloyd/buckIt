@@ -90,6 +90,7 @@ function storePicture() {
         let e = document.getElementById("actionDrop");
         let strUser = e.options[e.selectedIndex].text;
         console.log(strUser);
+        console.log("asf");
         let date = new Date().toMysqlFormat();
         let data = `op=publishEvent&location=Madison&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&createTime=${date}`;
         jQuery.ajax({
