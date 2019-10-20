@@ -10605,6 +10605,10 @@ a.text-dark:hover, a.text-dark:focus {
   margin-top: 40%;
 }
 
+.c-mt20 {
+  margin-top: 20%;
+}
+
 .c-bg-img {
   background-image: url("../assets/landing-background.jpg");
 }
