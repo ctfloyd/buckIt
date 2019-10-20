@@ -34,7 +34,6 @@ function readFile(file) {
 }
 
 function processFile(dataURL, fileType) {
-    console.log(dataURL);
 	var maxWidth = 1280;
 	var maxHeight = 720;
 
@@ -75,7 +74,6 @@ function processFile(dataURL, fileType) {
         dataURL = canvas.toDataURL(fileType);
         
         gDataURL = dataURL;
-        console.log(dataURL);
 	};
 
 	image.onerror = function () {
@@ -89,6 +87,7 @@ function storePicture() {
             alert("ERROR");
             return;
         }
+        console.log(image);
         let date = new Date().toMysqlFormat();
         let data = `op=publishEvent&location=Madison&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&createTime=${date}`;
         jQuery.ajax({
