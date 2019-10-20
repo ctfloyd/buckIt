@@ -1,0 +1,169 @@
+<?php
+
+
+
+  // Tests if a login combination is valid to login  
+function testLogin($user, $pass){
+	$conn = connect();
+	$sql =  "SELECT * FROM buckit_user WHERE username='$user' AND password='$pass'";
+
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		while ($list = mysqli_fetch_array($result)) {
+			 $userid = $list[0];
+		}
+		$conn->close();
+		return true;
+	}
+	else {
+		$conn->close();
+		return false;
+	}
+  }
+
+  // Inputs the users information in the users db if it's not already taken
+function registerLogin($user, $pass, $first, $last, $email){
+	$conn = connect();
+
+	// check to see if username already exists
+	$sql = "SELECT * FROM buckit_user WHERE username='$user'";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		return "The username '$user' already exists";
+	}
+
+	$sql = "INSERT INTO buckit_user (firstName, lastName, points, username, password, email)
+		VALUES ('$first', '$last', 0, '$user', '$pass', '$email')";
+	if ($conn->query($sql) === TRUE) {
+		$conn->close();
+		return "New record created successfully";
+	} else {
+		$conn->close();
+		return "Error: $sql<br>$conn->error";
+	}
+  }
+
+  // Get the info for a given user as an array
+function getUinfo($user){
+	$conn = connect();
+	$sql = "SELECT * FROM buckit_user WHERE username='$user'";
+
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		$conn->close();
+		return mysqli_fetch_array($result);
+	}
+	$conn->close();
+	return "Could not find user '$user'";
+	
+  }
+
+  // publish an event to the events database, returns true if succeeded
+function publishEvent($location, $user, $image, $type, $createtime){
+	$conn = connect();
+
+	$eventid = rand(0, 99999999999);
+	$sql = "SELECT * FROM buckit_events WHERE eventid='$eventid'";
+	$result = $conn->query($sql);
+	while ($result->num_rows > 0) {
+		$eventid = rand(0, 99999999999);
+		$sql = "SELECT * FROM buckit_events WHERE eventid='$eventid'";
+		$result = $conn->query($sql);
+	}
+
+	$sql = "INSERT INTO buckit_events (location, username, image, verified, type, eventid, createtime)
+		VALUES ('$location', '$user', '$image', -1, '$type', $eventid, '$createtime')";
+
+	if ($conn->query($sql) === TRUE) {
+		$conn->close();
+		return true;
+	} else {
+		$conn->close();
+		return false;
+	}
+  }
+
+  // get the most recent event that was not uploaded by current user from the events database
+function getEvent($user){
+	$conn = connect();
+
+	$sql = "SELECT * FROM buckit_events WHERE verified='-1' AND username!='123' ORDER BY createtime DESC";
+	
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		$conn->close();
+		return mysqli_fetch_array($result);
+	}
+	else {		
+		$conn->close();
+		return -1;
+	}
+  }
+
+  // Assigns a verified tag to the given event
+  function verifyEvent($eventID, $verified){
+	  $conn = connect();
+	  $sql = "UPDATE buckit_events SET verified = $verified WHERE eventid='$eventID'";
+
+	  if ($conn->query($sql) === TRUE) {
+		  $conn->close();
+		  return true;
+	  } else {
+		  $conn->close();
+		  return false;
+	  }
+  }
+/*
+  // Update points for a user
+  function updatePoints($user, $points) {
+	  echo "made it here";
+	  $conn = connect();
+	  $sql = "UPDATE buckit_users SET points = $points WHERE username='$user'";
+
+	  if ($conn->query($sql) === TRUE) {
+		  $conn->close();
+		  return true;
+	  } else {
+		  $conn->close();
+		  return false;
+	  }
+  }
+ */
+  // pass in the amount of points to add to the user
+  function addPoints($user, $points) {
+	  echo "whoooo";
+	  $conn = connect();
+	  sql = "SELECT points FROM buckit_events WHERE username='$userid'";
+
+	  $result = $conn->query($sql);
+	  if ($result->num_rows > 0) {
+		$conn->close();
+		//$add =  mysqli_fetch_array($result[0]);
+		//$points = $points + $add;
+		return true;
+		//return updatePoints($user, $points);
+	  }
+	  else {
+		  $conn->close();
+		  return false;
+	  }
+  }
+
+  // Establish the connection with the db
+  function connect() {
+	$servername = 'localhost';
+	$user = 'root';
+	$password = 'TWM79e5sDThB7e';
+	$dbname = 'mysql';
+	
+	// Create connection
+	$conn = new mysqli($servername, $user, $password, $dbname);
+	
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	return $conn;
+  }
+
+?>
