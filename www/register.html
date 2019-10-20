@@ -50,6 +50,7 @@
     
 <script type="text/javascript">
 $(document).ready(function() {
+    if(sessionStorage.getItem("username")) location.href = 'verify.html';
     $('#loginform').submit(function(e) {
         e.preventDefault();
         let data = "op=registerLogin&" + $(this).serialize();
