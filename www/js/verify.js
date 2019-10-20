@@ -72,7 +72,7 @@ $(document).ready(function () {
 
     function setVerification(ver){
         let val = ver == false ? 0 : 1;
-        let data = `op=verifyEvent&eventID=${currentEventID}$verified=${val}`;
+        let data = `op=verifyEvent&eventID=${currentEventID}&verified=${val}`;
         jQuery.ajax({
             type: "POST",
             url: '../calebOps.php',
