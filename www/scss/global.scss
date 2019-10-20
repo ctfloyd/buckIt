@@ -2,7 +2,9 @@ $primary: lightgreen;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-
+* {
+    font-family: "Raleway",Helvetica,Arial,sans-serif
+}
 .tagline {
     width: 95vw;
 }

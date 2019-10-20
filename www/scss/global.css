@@ -10561,6 +10561,10 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+* {
+  font-family: "Raleway",Helvetica,Arial,sans-serif;
+}
+
 .tagline {
   width: 95vw;
 }
