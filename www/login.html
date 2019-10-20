@@ -54,7 +54,7 @@ $(document).ready(function() {
                 
                 // user is logged in successfully in the back-end
                 // let's redirect
-                if (response.success == "1")
+                if (jsonData.success == "1")
                 {
                     sessionStorage.setItem("username", $("#username").val());
                     location.href = 'verify.html';
