@@ -46,6 +46,7 @@ function processFile(dataURL, fileType) {
 		var shouldResize = (width > maxWidth) || (height > maxHeight);
 
 		if (!shouldResize) {
+            gDataURL = dataURL;
 			sendFile(dataURL);
 			return;
 		}
