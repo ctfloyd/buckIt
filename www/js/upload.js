@@ -87,7 +87,7 @@ function storePicture() {
             alert("ERROR");
             return;
         }
-        console.log(image);
+        console.log($("#actionDrop"));
         let date = new Date().toMysqlFormat();
         let data = `op=publishEvent&location=Madison&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&createTime=${date}`;
         jQuery.ajax({
