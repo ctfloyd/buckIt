@@ -11,6 +11,9 @@
     <script src="https://kit.fontawesome.com/eaa8ba301d.js" crossorigin="anonymous"></script>
   </head>
   <body>
+      <script>
+        if(!sessionStorage.getItem("username")) location.href = "login.html";
+    </script>
         <div class="container-fluid">
                 <div class="row bg-light pt-3 pb-3 c-row2">
                     <div class="col">
@@ -94,7 +97,6 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                if(!sessionStorage.getItem("username")) location.href = "login.html";
                 let data = `op=getUInfo&username=${sessionStorage.getItem("username")}`;
                 jQuery.ajax({
                     type: "POST",

@@ -1,5 +1,3 @@
-if(!sessionStorage.getItem("username")) location.href = "login.html";
-
 let gDataURL = null;
 
 if (window.File && window.FileReader && window.FormData) {
