@@ -13,7 +13,6 @@ if(isset($_POST['op'])) {
 function testOp($op) {
     switch($op) { 
         case "testLogin":
-            return "testlogin";
             if (!isset($_POST["username"]) || !isset($_POST["password"])) {
                 $conn->close();
                 return "-3";
