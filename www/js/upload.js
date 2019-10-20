@@ -81,7 +81,6 @@ function processFile(dataURL, fileType) {
 }
 
 function storePicture(image) {
-        e.preventDefault();
         let date = new Date().toMysqlFormat();
         console.log(date);
         let data = `op=publishEvent&location=Madison,WI&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&crateTime=${date}`;
