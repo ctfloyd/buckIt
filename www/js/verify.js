@@ -49,7 +49,8 @@ $(document).ready(function () {
             data: data,
             success: function(response)
             {
-                var jsonData = JSON.parse(response);              
+                var jsonData = JSON.parse(response);    
+                console.log(jsonData.success.image);          
                 // user is logged in successfully in the back-end
                 // let's redirect
                 if (jsonData.success.image)
