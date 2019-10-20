@@ -79,7 +79,8 @@ $(document).ready(function () {
             data: data,
             success: function(response)
             {
-                var jsonData = JSON.parse(response);           
+                var jsonData = JSON.parse(response);   
+                console.log(jsonData);        
                 // user is logged in successfully in the back-end
                 // let's redirect
                 if (jsonData.success == 1)
@@ -93,6 +94,9 @@ $(document).ready(function () {
         }
         });
     }
+
+    document.getElementById("tdButton").onclick = () => setVerification(false);
+    document.getElementById("tuButton").onclick = () => setVerification(true);
 
 
     getNextImage();
