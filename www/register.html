@@ -55,16 +55,15 @@ $(document).ready(function() {
         jQuery.ajax({
             type: "POST",
             url: 'auth.php',
-            data: $(this).serialize(),
+            data: "op=$(this).serialize(),
             success: function(response)
             {
-                console.log(response);
-		var jsonData = JSON.parse(response);
- 		console.log(jsonData);
+		        var jsonData = JSON.parse(response);
                 // user is logged in successfully in the back-end
                 // let's redirect
                 if (jsonData.success == "1")
                 {
+                    sessionStorage.setItem("username", sessionStorage.setItem("username", $("#username").val()));
                     location.href = 'verify.html';
                 }
                 else

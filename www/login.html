@@ -43,14 +43,11 @@ $(document).ready(function() {
         e.preventDefault();
         jQuery.ajax({
             type: "POST",
-            url: 'auth.php',
-            data: $(this).serialize(),
+            url: '../calebOps.php',
+            data: "op=testLogin&" + $(this).serialize(),
             success: function(response)
             {
-                
-                console.log(response);
                 var jsonData = JSON.parse(response);
-                console.log(jsonData);
                 // user is logged in successfully in the back-end
                 // let's redirect
                 if (jsonData.success == "1")

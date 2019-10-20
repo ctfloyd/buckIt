@@ -7,7 +7,8 @@
 	} else {
 		echo json_encode(array('success' => 0));
 	}
-	}
+    }
+    
 
 
 

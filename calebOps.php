@@ -1,50 +1,77 @@
 <?php
-
-
+$op = null;
+if(isset($_POST['op'])) {
+    $op = null;
+} else {
+    return "Invalid Parameters";
+}
 
   // Tests if a login combination is valid to login  
-function testLogin($user, $pass){
-	$conn = connect();
-	$sql =  "SELECT * FROM buckit_user WHERE username='$user' AND password='$pass'";
+// function testLogin($user, $pass){
+switch($op) { 
+    case "testLogin":
+        if (!isset($_POST["username"]) || !isset($_POST["password"])) return "Invalid Parameters";
 
-	$result = $conn->query($sql);
-	if ($result->num_rows > 0) {
-		while ($list = mysqli_fetch_array($result)) {
-			 $userid = $list[0];
-		}
-		$conn->close();
-		return true;
-	}
-	else {
-		$conn->close();
-		return false;
-	}
-  }
+        $user = $_POST["username"];
+        $pass = $_POST["password"];
+            
+        $conn = connect();
+        $sql =  "SELECT * FROM buckit_user WHERE username='$user' AND password='$pass'";
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($list = mysqli_fetch_array($result)) {
+                $userid = $list[0];
+            }
+            $conn->close();
+            return true;
+        }
+        else {
+            $conn->close();
+            return false;
+        }
+        break;
 
   // Inputs the users information in the users db if it's not already taken
-function registerLogin($user, $pass, $first, $last, $email){
-	$conn = connect();
+// function registerLogin($user, $pass, $first, $last, $email){
+    case "registerLogin":
 
-	// check to see if username already exists
-	$sql = "SELECT * FROM buckit_user WHERE username='$user'";
-	$result = $conn->query($sql);
-	if ($result->num_rows > 0) {
-		return "The username '$user' already exists";
-	}
+        if (!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["firstname"])
+            || !isset($_POST["lastname"] || !isset($_POST["email"]))) return "Invalid Parameters";
 
-	$sql = "INSERT INTO buckit_user (firstName, lastName, points, username, password, email)
-		VALUES ('$first', '$last', 0, '$user', '$pass', '$email')";
-	if ($conn->query($sql) === TRUE) {
-		$conn->close();
-		return "New record created successfully";
-	} else {
-		$conn->close();
-		return "Error: $sql<br>$conn->error";
-	}
-  }
+        $user = $_POST["username"];
+        $pass = $_POST["password"];
+        $first = $_POST["firstname"];
+        $last = $_POST["lastname"];
+        $email = $_POST["email"];
+
+        $conn = connect();
+
+        // check to see if username already exists
+        $sql = "SELECT * FROM buckit_user WHERE username='$user'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            return "The username '$user' already exists";
+        }
+
+        $sql = "INSERT INTO buckit_user (firstName, lastName, points, username, password, email)
+            VALUES ('$first', '$last', 0, '$user', '$pass', '$email')";
+        if ($conn->query($sql) === TRUE) {
+            $conn->close();
+            return "New record created successfully";
+        } else {
+            $conn->close();
+            return "Error: $sql<br>$conn->error";
+        }
+        break;
 
   // Get the info for a given user as an array
-function getUinfo($user){
+// function getUinfo($user){
+case "getUInfo":
+    if (!isset($_POST["username"])) return "Invalid Parameters";
+
+    $user = $_POST["username"];
+
 	$conn = connect();
 	$sql = "SELECT * FROM buckit_user WHERE username='$user'";
 
@@ -55,11 +82,20 @@ function getUinfo($user){
 	}
 	$conn->close();
 	return "Could not find user '$user'";
-	
-  }
+	break;
 
   // publish an event to the events database, returns true if succeeded
-function publishEvent($location, $user, $image, $type, $createtime){
+// function publishEvent($location, $user, $image, $type, $createtime){
+case "publishEvent":
+    if (!isset($_POST["location"]) || !isset($_POST["username"]) || !isset($_POST["image"])
+    || !isset($_POST["type"] || !isset($_POST["createTime"]))) return "Invalid Parameters";
+
+    $user = $_POST["username"];
+    $location = $_POST["location"];
+    $image = $_POST["image"];
+    $type = $_POST["type"];
+    $createtime = $_POST["createTime"];
+
 	$conn = connect();
 
 	$eventid = rand(0, 99999999999);
@@ -80,11 +116,16 @@ function publishEvent($location, $user, $image, $type, $createtime){
 	} else {
 		$conn->close();
 		return false;
-	}
-  }
+    }
+    break;
 
   // get the most recent event that was not uploaded by current user from the events database
-function getEvent($user){
+// function getEvent($user){
+case "getEvent":
+    if (!isset($_POST["username"])) return "Invalid Parameters";
+
+    $user = $_POST["username"];
+
 	$conn = connect();
 
 	$sql = "SELECT * FROM buckit_events WHERE verified='-1' AND username!='123' ORDER BY createtime DESC";
@@ -97,11 +138,18 @@ function getEvent($user){
 	else {		
 		$conn->close();
 		return -1;
-	}
-  }
+    }
+    
+    break;
 
   // Assigns a verified tag to the given event
-  function verifyEvent($eventID, $verified){
+//   function verifyEvent($eventID, $verified){
+case "verifyEvent":
+    if (!isset($_POST["eventID"]) || !isset($_POST["verified"])) return "Invalid Parameters";
+
+    $eventID = $_POST["eventID"];
+    $verified = $_POST["verified"];
+
 	  $conn = connect();
 	  $sql = "UPDATE buckit_events SET verified = $verified WHERE eventid='$eventID'";
 
@@ -133,7 +181,7 @@ function getEvent($user){
   function addPoints($user, $points) {
 	  echo "whoooo";
 	  $conn = connect();
-	  sql = "SELECT points FROM buckit_events WHERE username='$userid'";
+	  $sql = "SELECT points FROM buckit_events WHERE username='$userid'";
 
 	  $result = $conn->query($sql);
 	  if ($result->num_rows > 0) {
@@ -165,5 +213,4 @@ function getEvent($user){
 	}
 	return $conn;
   }
-
 ?>
