@@ -130,13 +130,13 @@ function testOp($op) {
     // get the most recent event that was not uploaded by current user from the events database
     // function getEvent($user){
     case "getEvent":
-        if (!isset($_POST["username"])) return "Invalid Parameters";
+        if (!isset($_POST["username"])) return "-3";
 
         $user = $_POST["username"];
 
         $conn = connect();
 
-        $sql = "SELECT * FROM buckit_events WHERE verified='-1' AND username!='123' ORDER BY createtime DESC";
+        $sql = "SELECT * FROM buckit_events WHERE verified='-1' AND username !='$user' ORDER BY createtime DESC";
         
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
