@@ -30,7 +30,7 @@ function readFile(file) {
 		alert('There was an error reading the file!');
 	}
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL();
 }
 
 function processFile(dataURL, fileType) {
@@ -74,6 +74,7 @@ function processFile(dataURL, fileType) {
         dataURL = canvas.toDataURL(fileType);
         
         gDataURL = dataURL;
+        console.log(dataURL);
 	};
 
 	image.onerror = function () {
