@@ -64,8 +64,7 @@ $(document).ready(function () {
                 }
                 else
                 {
-                    console.log(jsonData);
-                    alert('Error uploading photo!');
+                    alert('No photos available, get dripping!');
                 }
         }
         });
