@@ -54,8 +54,7 @@ $(document).ready(function () {
                 // let's redirect
                 if (jsonData.success.image)
                 {
-                    console.log("replcae");
-                    $("#rateMe").attr("src", jsonData.sucess.image);
+                    $("#rateMe").attr("src", jsonData.success.image);
                 }
                 else
                 {
