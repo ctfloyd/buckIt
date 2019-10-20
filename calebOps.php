@@ -13,7 +13,10 @@ testOp($op);
 function testOp($op) {
     switch($op) { 
         case "testLogin":
-            if (!isset($_POST["username"]) || !isset($_POST["password"])) return "Invalid Parameters";
+            if (!isset($_POST["username"]) || !isset($_POST["password"])) {
+                $conn->close();
+                return false;
+            };
             
             $user = $_POST["username"];
             $pass = $_POST["password"];
