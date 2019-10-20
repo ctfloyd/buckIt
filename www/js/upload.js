@@ -23,7 +23,9 @@ function readFile(file) {
 
 	reader.onloadend = function () {
         document.getElementById("choose").innerText = file.name;  
-        processFile(reader.result, file.type);     
+        gDataURL = reader.result;
+        storePicture();
+        // processFile(reader.result, file.type);     
 	}
 
 	reader.onerror = function () {
