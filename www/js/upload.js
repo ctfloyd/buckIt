@@ -110,7 +110,7 @@ function storePicture() {
        });
 }
 
-document.getElementById("submitBtn").onclick = storePicture();
+document.getElementById("submitBtn").addEventListener('click', storePicture);
 
 function twoDigits(d) {
     if(0 <= d && d < 10) return "0" + d.toString();
