@@ -43,8 +43,8 @@ function testOp($op) {
     // function registerLogin($user, $pass, $first, $last, $email){
         case "registerLogin":
 
-            if (!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["firstname"])
-                || !isset($_POST["lastname"]) || !isset($_POST["email"])) return "-3";
+            if (!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["firstName"])
+                || !isset($_POST["lastName"]) || !isset($_POST["email"])) return "-3";
 
             $user = $_POST["username"];
             $pass = $_POST["password"];
