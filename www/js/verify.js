@@ -42,7 +42,7 @@ $(document).ready(function () {
     }
 
     function getNextImage() {
-        let data = `op=getEvent$username=${sessionStorage.getItem("username")}`;
+        let data = `op=getEvent&username=${sessionStorage.getItem("username")}`;
         jQuery.ajax({
             type: "POST",
             url: '../calebOps.php',
