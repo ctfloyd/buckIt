@@ -11,6 +11,7 @@ echo json_encode(array('success' => testOp($op)));
   // Tests if a login combination is valid to login  
 // function testLogin($user, $pass){
 function testOp($op) {
+    return $op;
     switch($op) { 
         case "testLogin":
             if (!isset($_POST["username"]) || !isset($_POST["password"])) {
