@@ -15,7 +15,7 @@ function testOp($op) {
         case "testLogin":
             if (!isset($_POST["username"]) || !isset($_POST["password"])) {
                 $conn->close();
-                return -1;
+                return -3;
             };
             
             $user = $_POST["username"];
@@ -44,7 +44,7 @@ function testOp($op) {
         case "registerLogin":
 
             if (!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["firstname"])
-                || !isset($_POST["lastname"]) || !isset($_POST["email"])) return "Invalid Parameters";
+                || !isset($_POST["lastname"]) || !isset($_POST["email"])) return "-3";
 
             $user = $_POST["username"];
             $pass = $_POST["password"];
