@@ -52,9 +52,9 @@ $(document).ready(function () {
                 var jsonData = JSON.parse(response);                
                 // user is logged in successfully in the back-end
                 // let's redirect
-                if (jsonData.sucess.image)
+                if (jsonData.sucess.success.image)
                 {
-                    $("#rateMe").attr("src",jsonData.sucess.image);
+                    $("#rateMe").attr("src",jsonData.sucess.success.image);
                 }
                 else
                 {
