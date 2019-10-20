@@ -37,7 +37,7 @@ switch($op) {
     case "registerLogin":
 
         if (!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["firstname"])
-            || !isset($_POST["lastname"] || !isset($_POST["email"]))) return "Invalid Parameters";
+            || !isset($_POST["lastname"]) || !isset($_POST["email"])) return "Invalid Parameters";
 
         $user = $_POST["username"];
         $pass = $_POST["password"];
@@ -161,12 +161,12 @@ case "verifyEvent":
 		  return false;
 	  }
   }
-/*
+
   // Update points for a user
   function updatePoints($user, $points) {
-	  echo "made it here";
+	  echo $points;
 	  $conn = connect();
-	  $sql = "UPDATE buckit_users SET points = $points WHERE username='$user'";
+	  $sql = "UPDATE buckit_user SET points = $points WHERE username='$user'";
 
 	  if ($conn->query($sql) === TRUE) {
 		  $conn->close();
@@ -175,21 +175,19 @@ case "verifyEvent":
 		  $conn->close();
 		  return false;
 	  }
+	  return true;
   }
- */
-  // pass in the amount of points to add to the user
-  function addPoints($user, $points) {
-	  echo "whoooo";
-	  $conn = connect();
-	  $sql = "SELECT points FROM buckit_events WHERE username='$userid'";
 
+  // pass in the amount of points to add to the user
+  function addPoints($user, $addPoints) {
+	  $conn = connect();
+	  $sql = "SELECT * FROM buckit_user WHERE username='$user'";
 	  $result = $conn->query($sql);
 	  if ($result->num_rows > 0) {
-		$conn->close();
-		//$add =  mysqli_fetch_array($result[0]);
-		//$points = $points + $add;
-		return true;
-		//return updatePoints($user, $points);
+		  $conn->close();
+		  $totalPoints =  mysqli_fetch_row($result)[2];
+		  $totalPoints = $totalPoints + $addPoints;
+		  return updatePoints($user, $totalPoints);
 	  }
 	  else {
 		  $conn->close();
