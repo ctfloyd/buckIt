@@ -65,7 +65,7 @@ $(document).ready(function() {
                 // let's redirect
                 if (jsonData.success == "1")
                 {
-                    sessionStorage.setItem("username", sessionStorage.setItem("username", $("#username").val()));
+                    sessionStorage.setItem("username", $("#username").val());
                     location.href = 'verify.html';
                 }
                 else if(jsonData.sucess == "2"){
