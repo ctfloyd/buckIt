@@ -47,7 +47,7 @@ function processFile(dataURL, fileType) {
 
 		if (!shouldResize) {
             gDataURL = dataURL;
-			sendFile(dataURL);
+			storePicture();
 			return;
 		}
 
