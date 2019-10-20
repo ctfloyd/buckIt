@@ -1,9 +1,9 @@
 let gDataURL = null;
 
 if (window.File && window.FileReader && window.FormData) {
-	var $inputField = $('#submitBtn');
+	var $inputField = $('#file');
 
-	$inputField.on('click', function (e) {
+	$inputField.on('change', function (e) {
 		var file = e.target.files[0];
 
 		if (file) {
@@ -72,7 +72,8 @@ function processFile(dataURL, fileType) {
 
         dataURL = canvas.toDataURL(fileType);
         
-        storePicture(dataURL);
+        gDataURL = dataURL;
+        storePicture();
 	};
 
 	image.onerror = function () {
@@ -80,7 +81,12 @@ function processFile(dataURL, fileType) {
 	};
 }
 
-function storePicture(image) {
+function storePicture() {
+        let image = gDataURL;
+        if(!image) {
+            alert("ERROR");
+            return;
+        }
         let date = new Date().toMysqlFormat();
         let data = `op=publishEvent&location=Madison,WI&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&crateTime=${date}`;
         jQuery.ajax({
@@ -105,6 +111,7 @@ function storePicture(image) {
        });
 }
 
+document.getElementById("submitBtn").onclick = storePicture();
 
 function twoDigits(d) {
     if(0 <= d && d < 10) return "0" + d.toString();
