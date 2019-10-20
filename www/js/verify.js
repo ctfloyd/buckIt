@@ -57,7 +57,7 @@ $(document).ready(function () {
                 {
                     let image = jsonData.success.image;
                     console.log(typeof image);
-                    image = image.replaceAll(" ", "+");
+                    image.replaceAll(" ", "+");
                     $("#rateMe").attr("src", jsonData.success.image);
                 }
                 else
