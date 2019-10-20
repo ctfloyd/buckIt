@@ -84,7 +84,9 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <button id="logoutBtn" class="btn btn-outline-danger btn-block">Logout</button>
+                    <div class="col-8">
+                        <button id="logoutBtn" class="btn btn-outline-danger btn-block">Logout</button>
+                    </div>
                 </div>
         </div>
     
@@ -117,7 +119,7 @@
                 }
                    });
                 });
-                document.getElementById('logoutButton').onclick = () => {
+                document.getElementById('logoutBtn').onclick = () => {
                     alert("Sad to see ya go so soon! Come back soon and keep on dripping!");
                     sessionStorage.removeItem("username");
                     location.href = "login.html";
