@@ -62,6 +62,7 @@ $(document).ready(function () {
                     $("#rateMe").attr("src", image);
                     $("#nameField").html(jsonData.success.username);
                     $("#dateField").html(jsonData.success.createtime);
+                    $("#typeField").html(jsonData.success.type);
                     currentEventID = jsonData.success.eventid;
                     eventUser = jsonData.success.username;
                 }
