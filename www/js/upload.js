@@ -74,7 +74,6 @@ function processFile(dataURL, fileType) {
         dataURL = canvas.toDataURL(fileType);
         
         gDataURL = dataURL;
-        storePicture();
 	};
 
 	image.onerror = function () {
@@ -112,7 +111,7 @@ function storePicture() {
        });
 }
 
-document.getElementById("submitBtn").onclick = storePicture();
+document.getElementById("submitBtn").onclick = storePicture;
 
 function twoDigits(d) {
     if(0 <= d && d < 10) return "0" + d.toString();
