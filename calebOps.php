@@ -96,7 +96,7 @@ function testOp($op) {
     // function publishEvent($location, $user, $image, $type, $createtime){
     case "publishEvent":
         if (!isset($_POST["location"]) || !isset($_POST["username"]) || !isset($_POST["image"])
-        || !isset($_POST["type"]) || !isset($_POST["createTime"])) return "Invalid Parameters";
+        || !isset($_POST["type"]) || !isset($_POST["createTime"])) return "-3";
 
         $user = $_POST["username"];
         $location = $_POST["location"];
@@ -120,10 +120,10 @@ function testOp($op) {
 
         if ($conn->query($sql) === TRUE) {
             $conn->close();
-            return true;
+            return "1";
         } else {
             $conn->close();
-            return false;
+            return "0";
         }
         break;
 

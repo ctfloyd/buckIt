@@ -70,10 +70,49 @@ function processFile(dataURL, fileType) {
 
 		context.drawImage(this, 0, 0, newWidth, newHeight);
 
-		dataURL = canvas.toDataURL(fileType);
+        dataURL = canvas.toDataURL(fileType);
+        
+        storePicture(dataURL);
 	};
 
 	image.onerror = function () {
 		alert('There was an error processing your file!');
 	};
 }
+
+function storePicture(image) {
+        e.preventDefault();
+        let date = new Date().toMysqlFormat();
+        console.log(date);
+        let data = `op=publishEvent&location=Madison,WI&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&crateTime=${date}`;
+        jQuery.ajax({
+            type: "POST",
+            url: '../../calebOps.php',
+            data: data,
+            success: function(response)
+            {
+                var jsonData = JSON.parse(response);                
+                // user is logged in successfully in the back-end
+                // let's redirect
+                if (jsonData.success == "1")
+                {
+                    sessionStorage.setItem("username", $("#username").val());
+                    location.href = 'verify.html';
+                }
+                else
+                {
+                    alert('Invalid Credentials!');
+                }
+           }
+       });
+}
+
+function twoDigits(d) {
+    if(0 <= d && d < 10) return "0" + d.toString();
+    if(-10 < d && d < 0) return "-0" + (-1*d).toString();
+    return d.toString();
+}
+
+Date.prototype.toMysqlFormat = function() {
+    return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
+};
