@@ -89,26 +89,26 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                    let data = "op=testLogin&" + $(this).serialize();
-                    jQuery.ajax({
-                        type: "POST",
-                        url: '../calebOps.php',
-                        data: data,
-                        success: function(response)
+                let data = `op=getUInfo&username=${sessionStorage.getItem("username")}`;
+                jQuery.ajax({
+                    type: "POST",
+                    url: '../calebOps.php',
+                    data: data,
+                    success: function(response)
+                    {
+                        var jsonData = JSON.parse(response);                
+                        // user is logged in successfully in the back-end
+                        // let's redirect
+                        if (jsonData.success.length > 3)
                         {
-                            var jsonData = JSON.parse(response);                
-                            // user is logged in successfully in the back-end
-                            // let's redirect
-                            if (jsonData.success == "1")
-                            {
-                                sessionStorage.setItem("username", $("#username").val());
-                                location.href = 'verify.html';
-                            }
-                            else
-                            {
-                                alert('Invalid Credentials!');
-                            }
-                       }
+                            console.log(jsonData);
+                        }
+                        else
+                        {
+                            console.log(jsonData);
+                            alert('Error communicating with server!');
+                        }
+                }
                    });
                 });
             </script>
