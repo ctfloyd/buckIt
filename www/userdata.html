@@ -28,7 +28,7 @@
                         <i class="fab fa-envira fa-4x" style="color:white"></i>
                     </div>
                     <div class="col-10 mt-3">
-                        <h3 class="text-right" style="color:white">Foo Bar Baz</h3>
+                        <h3 id="name" class="text-right" style="color:white">Foo Bar Baz</h3>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -36,7 +36,7 @@
                         <i class="fas fa-tint fa-4x" style="color:white"></i>
                     </div>
                     <div class="col-10 mt-3">
-                       <h3 class="text-right" style="color:white">90000</h3>
+                       <h3 id="pointsText" class="text-right" style="color:white">90000</h3>
                     </div>
                 </div>
                 <div class="row mt-3 mb-3">
@@ -101,7 +101,10 @@
                         // let's redirect
                         if (jsonData.success.length > 3)
                         {
-                            console.log(jsonData);
+                            let name = jsonData.firstName + " " + jsonData.lastName;
+                            let points = jsonData.points;
+                            $("#name").html(name);
+                            $("#points").html(points);
                         }
                         else
                         {

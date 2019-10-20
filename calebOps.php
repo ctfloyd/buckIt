@@ -169,43 +169,51 @@ function testOp($op) {
             return false;
         }
         break;
-    default:
-        return "unrecognized op";
-    }
-}
 
-  // Update points for a user
-  function updatePoints($user, $points) {
-	  echo $points;
-	  $conn = connect();
-	  $sql = "UPDATE buckit_user SET points = $points WHERE username='$user'";
-
-	  if ($conn->query($sql) === TRUE) {
-		  $conn->close();
-		  return true;
-	  } else {
-		  $conn->close();
-		  return false;
-	  }
-	  return true;
-  }
 
   // pass in the amount of points to add to the user
-  function addPoints($user, $addPoints) {
-	  $conn = connect();
-	  $sql = "SELECT * FROM buckit_user WHERE username='$user'";
-	  $result = $conn->query($sql);
-	  if ($result->num_rows > 0) {
-		  $conn->close();
-		  $totalPoints =  mysqli_fetch_row($result)[2];
-		  $totalPoints = $totalPoints + $addPoints;
-		  return updatePoints($user, $totalPoints);
-	  }
-	  else {
-		  $conn->close();
-		  return false;
-	  }
+//   function addPoints($user, $addPoints) {
+    case "addPoints":
+       if (!isset($_POST["username"]) || !isset($_POST["points"])) return "-3";
+
+        $user = $_POST["username"];
+        $addPoints = $_POST["points"];
+        
+        $conn = connect();
+        $sql = "SELECT * FROM buckit_user WHERE username='$user'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $conn->close();
+            $totalPoints =  mysqli_fetch_row($result)[2];
+            $totalPoints = $totalPoints + $addPoints;
+            return updatePoints($user, $totalPoints);
+        }
+        else {
+            $conn->close();
+            return false;
+        }
+        break;
+    default:
+      return "unrecognized op";
   }
+}
+
+
+    // Update points for a user
+    function updatePoints($user, $points) {
+        echo $points;
+        $conn = connect();
+        $sql = "UPDATE buckit_user SET points = $points WHERE username='$user'";
+  
+        if ($conn->query($sql) === TRUE) {
+            $conn->close();
+            return true;
+        } else {
+            $conn->close();
+            return false;
+        }
+        return true;
+    }
 
   // Establish the connection with the db
   function connect() {

@@ -40,6 +40,7 @@ $(document).ready(function () {
     }
 
     let currentEventID = null;
+    let eventUser = null;
     function getNextImage() {
         let data = `op=getEvent&username=${sessionStorage.getItem("username")}`;
         jQuery.ajax({
@@ -60,6 +61,7 @@ $(document).ready(function () {
                     $("#nameField").html(jsonData.success.username);
                     $("#dateField").html(jsonData.success.createtime);
                     currentEventID = jsonData.success.eventid;
+                    eventUser = jsonData.success.username;
                 }
                 else
                 {
@@ -85,7 +87,34 @@ $(document).ready(function () {
                 // let's redirect
                 if (jsonData.success == 1)
                 {
+                    let username = sessionStorage.getItem("username");
                     getNextImage();
+                    updatePoints(username, 1);
+                    updatePoints(eventUser, 10);
+                }
+                else
+                {
+                    alert('Error communicating with server.');
+                }
+        }
+        });
+    }
+
+    function updatePoints(user, amount){
+        let data = `op=addPoints&username=${user}&points=${amount}`;
+        jQuery.ajax({
+            type: "POST",
+            url: '../calebOps.php',
+            data: data,
+            success: function(response)
+            {
+                var jsonData = JSON.parse(response);   
+                console.log(jsonData);        
+                // user is logged in successfully in the back-end
+                // let's redirect
+                if (jsonData.success == 1)
+                {
+                    console.log("added points");
                 }
                 else
                 {
