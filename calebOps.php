@@ -15,7 +15,7 @@ function testOp($op) {
         case "testLogin":
             if (!isset($_POST["username"]) || !isset($_POST["password"])) {
                 $conn->close();
-                return false;
+                echo false;
             };
             
             $user = $_POST["username"];
@@ -30,11 +30,11 @@ function testOp($op) {
                     $userid = $list[0];
                 }
                 $conn->close();
-                return true;
+                echo true;
             }
             else {
                 $conn->close();
-                return false;
+                echo false;
             }
             break;
 
