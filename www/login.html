@@ -41,11 +41,12 @@ $(document).ready(function() {
     if(sessionStorage.getItem("username")) location.href = 'verify.html';
     $('#loginform').submit(function(e) {
         e.preventDefault();
-        let data = "op=testLogin&" + $(this).serialize();
+        let data2 = "op=testLogin&" + $(this).serialize();
+        console.log(data);
         jQuery.ajax({
             type: "POST",
             url: '../calebOps.php',
-            data: data,
+            data: data2,
             success: function(response)
             {
                 var jsonData = JSON.parse(response);                
