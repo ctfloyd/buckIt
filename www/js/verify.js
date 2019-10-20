@@ -57,6 +57,7 @@ $(document).ready(function () {
                 // let's redirect
                 if (jsonData.success.image)
                 {
+                    console.log(jsonData.success);
                     let image = jsonData.success.image;
                     image = image.replace(/\s/g, "+");
                     $("#rateMe").attr("src", image);
