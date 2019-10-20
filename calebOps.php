@@ -15,7 +15,7 @@ function testOp($op) {
         case "testLogin":
             if (!isset($_POST["username"]) || !isset($_POST["password"])) {
                 $conn->close();
-                return -3;
+                return "-3";
             };
             
             $user = $_POST["username"];
