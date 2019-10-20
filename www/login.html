@@ -42,7 +42,6 @@ $(document).ready(function() {
     $('#loginform').submit(function(e) {
         e.preventDefault();
         let data2 = "op=testLogin&" + $(this).serialize();
-        console.log(data2);
         jQuery.ajax({
             type: "POST",
             url: '../calebOps.php',

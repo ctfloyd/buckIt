@@ -13,6 +13,7 @@ if(isset($_POST['op'])) {
 function testOp($op) {
     switch($op) { 
         case "testLogin":
+            return "testlogin";
             if (!isset($_POST["username"]) || !isset($_POST["password"])) {
                 $conn->close();
                 return "-3";
@@ -30,13 +31,12 @@ function testOp($op) {
                     $userid = $list[0];
                 }
                 $conn->close();
-                return 1;
+                return "1";
             }
             else {
                 $conn->close();
-                return 0;
+                return "0";
             }
-            return;
             break;
 
     // Inputs the users information in the users db if it's not already taken
