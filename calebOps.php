@@ -6,7 +6,7 @@ if(isset($_POST['op'])) {
     return "Invalid Parameters";
 }
 
-testOp($op);
+echo json_encode(array('success' => testOp($op)));
 
   // Tests if a login combination is valid to login  
 // function testLogin($user, $pass){
@@ -15,7 +15,7 @@ function testOp($op) {
         case "testLogin":
             if (!isset($_POST["username"]) || !isset($_POST["password"])) {
                 $conn->close();
-                echo json_encode(array('success' => 0));
+                return -1;
             };
             
             $user = $_POST["username"];
@@ -30,11 +30,11 @@ function testOp($op) {
                     $userid = $list[0];
                 }
                 $conn->close();
-                echo json_encode(array('success' => 1));
+                return 1;
             }
             else {
                 $conn->close();
-                echo json_encode(array('success' => 0));
+                return 0;
             }
             return;
             break;
