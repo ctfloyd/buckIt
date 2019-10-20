@@ -30,10 +30,11 @@ function readFile(file) {
 		alert('There was an error reading the file!');
 	}
 
-    reader.readAsDataURL();
+    reader.readAsDataURL(file);
 }
 
 function processFile(dataURL, fileType) {
+    console.log(dataURL);
 	var maxWidth = 1280;
 	var maxHeight = 720;
 
