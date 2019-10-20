@@ -76,7 +76,7 @@ function testOp($op) {
     // Get the info for a given user as an array
     // function getUinfo($user){
     case "getUInfo":
-        if (!isset($_POST["username"])) return "Invalid Parameters";
+        if (!isset($_POST["username"])) return "-3";
 
         $user = $_POST["username"];
 

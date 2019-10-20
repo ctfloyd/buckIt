@@ -89,7 +89,7 @@ function storePicture() {
         }
         console.log(image);
         let date = new Date().toMysqlFormat();
-        let data = `op=publishEvent&location=Madison&username=${sessionStorage.getItem("username")}&image=${image}&type=recycle&createTime=${date}`;
+        let data = `op=getUInfo&username=${sessionStorage.getItem("username")}`;
         jQuery.ajax({
             type: "POST",
             url: '../calebOps.php',
@@ -99,14 +99,15 @@ function storePicture() {
                 var jsonData = JSON.parse(response);                
                 // user is logged in successfully in the back-end
                 // let's redirect
-                if (jsonData.success == "1")
+                if (jsonData.success.length > 3)
                 {
+                    console.log(jsonData.success);
                     alert("Sucess!");
                 }
                 else
                 {
                     console.log(jsonData);
-                    alert('Error uploading photo!');
+                    alert('Error retrieving user data');
                 }
            }
        });
